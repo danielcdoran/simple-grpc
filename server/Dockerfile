@@ -12,6 +12,6 @@ COPY ./server/ ./server
 
 WORKDIR /go/server
 
-RUN go build -o server5.exe ./main.go
+RUN go build -o server.exe ./main.go
 
-# ENTRYPOINT ./client.exe
+ENTRYPOINT ./server.exe

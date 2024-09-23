@@ -14,4 +14,4 @@ WORKDIR /go/client
 
 RUN go build -o client.exe ./main.go
 
-# ENTRYPOINT ./client.exe
+ENTRYPOINT ./client.exe

@@ -25,3 +25,7 @@ grpcurl -plaintext localhost:50051 list
 grpcurl -plaintext localhost:50051 describe
 
 https://github.com/fullstorydev/grpcurl/issues/200 says use plaintext when not using TLS
+
+docker-compose up --build
+
+localhost:8091 will give output for grpcui

@@ -1,0 +1,39 @@
+version: "3.9"  # optional since v1.27.0
+services:
+  grpcui:
+    image: wongnai/grpcui:master
+    container_name: gogrpcui
+    ports:
+      - "8091:8080"
+    environment:
+      - GRPCUI_SERVER=server:50051
+    depends_on:
+      - server
+    
+  server:
+    build: 
+      context: .
+      dockerfile: server/Dockerfile
+    # ports:
+    #   - "4040:4040"
+
+  client:
+    build: 
+      context: .
+      dockerfile: client/Dockerfile
+    environment:
+      - GRPC_URL_PORT=server:50051
+            
+    # ports:
+    #   - "8080:8080"
+    depends_on:
+        - server
+
+  # grpcurl:
+  #   build: 
+  #     context: .
+  #     dockerfile: grpcurl/Dockerfile
+  #   ports:
+  #     - "8080:8080"
+  #   depends_on:
+  #       - server

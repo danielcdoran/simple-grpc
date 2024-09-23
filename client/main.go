@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"log"
+	"os"
 
 	"github.com/blackhorseya/golang-101/pb"
 	"google.golang.org/grpc"
@@ -12,8 +13,12 @@ import (
 
 func main() {
 	fmt.Println("Hello, World! This is a client.")
+	value := os.Getenv("GRPC_URL_PORT")
+	if len(value) == 0 {
+		value = "localhost:50051"
+	}
 
-	conn, err := grpc.NewClient("localhost:50051", grpc.WithTransportCredentials(insecure.NewCredentials()))
+	conn, err := grpc.NewClient(value, grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
 		log.Fatalf("failed to dial: %v", err)
 	}
